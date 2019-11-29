@@ -154,14 +154,14 @@ class QrService {
                         ),
                     ),
                 );
-                if (barcodes != null && barcodes.length > 0 && barcodes.first.rawValue != null) {
-                    print('\n~~~');
-                    print(barcodes.first.toString());
-                    print(barcodes.first.displayValue);
-                    print(barcodes.first.valueType);
-                    print(barcodes.first.rawValue);
-                    print('~~~\n');
+                if (barcodes != null && barcodes.length > 0) {
                     try {
+                        print('\n~~~');
+                        print(barcodes.first.toString());
+                        print(barcodes.first.displayValue);
+                        print(barcodes.first.valueType);
+                        print(barcodes.first.rawValue);
+                        print('~~~\n');
                         final barcode = barcodes.first;
                         print(barcode.rawValue);
                         qrResult.sink.add(barcode.rawValue);

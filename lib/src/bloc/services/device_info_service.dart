@@ -1,3 +1,4 @@
+import 'dart:convert' show JsonEncoder;
 import 'dart:io' show Platform;
 import 'package:device_info/device_info.dart';
 
@@ -10,7 +11,9 @@ class DeviceInfoService {
         _getDeviceInfo()
             .then((result) {
                 deviceInfo = result;
-                print(result);
+                JsonEncoder encoder = new JsonEncoder.withIndent('  ');
+                String prettyprint = encoder.convert(result);
+                print(prettyprint);
             });
     }
 
@@ -19,16 +22,12 @@ class DeviceInfoService {
             if (Platform.isAndroid) {
                 final AndroidDeviceInfo device = await _deviceInfo.androidInfo;
                 return {
-                    'androidId': device.androidId,
                     'board': device.board,
                     'bootloader': device.bootloader,
                     'brand': device.brand,
                     'device': device.device,
-                    'display': device.display,
-                    'fingerprint': device.fingerprint,
                     'hardware': device.hardware,
                     'host': device.host,
-                    'id': device.id,
                     'isPhysicalDevice': device.isPhysicalDevice,
                     'manufacturer': device.manufacturer,
                     'model': device.model,
